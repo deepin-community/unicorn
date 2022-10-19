@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+if [ $1 != "configure" ] ; then
+  exit 0
+fi
+
+running() {
+  invoke-rc.d $1 status >/dev/null 2>&1
+}
+
+if [ -x /etc/init.d/unicorn ]; then
+  if running unicorn; then
+    invoke-rc.d unicorn upgrade
+  fi
+fi
+
+#DEBHELPER#
+
+exit 0

@@ -1,0 +1,18 @@
+[Unit]
+Description=Unicorn - Ruby web server
+Documentation=man:unicorn
+After=network.target mysql.service
+Wants=network-online.target
+
+[Service]
+#Environment=CONFIG_RB=/path/to/your/web/application/unicorn.conf.rb
+Environment=UNICORN_OPTS=-E production
+EnvironmentFile=-/etc/default/unicorn
+ExecStart=/usr/bin/unicorn -c ${CONFIG_RB} ${UNICORN_OPTS}
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-abort
+#User=www-data
+#Group=www-data
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,36 @@
+Source: unicorn
+Maintainer: Debian Ruby Team <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Uploaders: Hleb Valoshka <375gnu@gmail.com>,
+           Pirate Praveen <praveen@debian.org>
+Section: ruby
+Testsuite: autopkgtest-pkg-ruby
+Priority: optional
+Build-Depends: curl,
+               debhelper-compat (= 13),
+               gem2deb (>= 1.0~),
+               quilt,
+               ruby-kgio,
+               ruby-rack,
+               ruby-raindrops
+Standards-Version: 4.5.1
+Vcs-Browser: https://salsa.debian.org/ruby-team/unicorn
+Vcs-Git: https://salsa.debian.org/ruby-team/unicorn.git
+Homepage: https://unicorn.bogomips.org/
+XS-Ruby-Versions: all
+Rules-Requires-Root: no
+
+Package: unicorn
+Architecture: kfreebsd-any linux-any
+XB-Ruby-Versions: ${ruby:Versions}
+Depends: ruby | ruby-interpreter,
+         ruby-kgio,
+         ruby-rack,
+         ruby-raindrops,
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Rack HTTP server for fast clients
+ Unicorn is an HTTP server for Rack applications designed to only serve fast
+ clients on low-latency, high-bandwidth connections and take advantage of
+ features in Unix and Unix-like kernels. Slow clients should only be served by
+ placing a reverse proxy capable of fully buffering both request and response
+ in between Unicorn and slow clients.

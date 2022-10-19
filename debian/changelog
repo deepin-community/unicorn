@@ -1,0 +1,252 @@
+unicorn (6.0.0-2) unstable; urgency=medium
+
+  * Team upload.
+  * Upload to unstable. 
+
+ -- Antonio Terceiro <terceiro@debian.org>  Tue, 02 Nov 2021 08:49:35 -0300
+
+unicorn (6.0.0-1) experimental; urgency=medium
+
+  [ Debian Janitor ]
+  * Set field Upstream-Contact in debian/copyright.
+  * Remove obsolete fields Contact, Name from debian/upstream/metadata
+    (already present in machine-readable debian/copyright).
+
+  [ Pirate Praveen ]
+  * New upstream version 6.0.0
+  * Bump Standards-Version to 4.5.1 (no changes needed)
+  * Bump debhelper compatibility level to 13
+
+ -- Pirate Praveen <praveen@debian.org>  Thu, 17 Jun 2021 00:42:59 +0530
+
+unicorn (5.5.3-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/control:
+    - Bump Standards-Version to 4.5.0, no changes required.
+    - Declare that the rules do not require root.
+
+ -- Georg Faerber <georg@debian.org>  Tue, 04 Feb 2020 10:01:52 +0000
+
+unicorn (5.5.1-1) unstable; urgency=medium
+
+  * Team Upload
+  [ Utkarsh Gupta ]
+  * Add salsa-ci.yml
+
+  [ Samyak Jain ]
+  * New upstream version 5.5.1
+  * Remove d/compat and update d/control
+  * Adds metadata in d/upstream
+
+ -- Samyak Jain <samyak.jn11@gmail.com>  Sat, 26 Oct 2019 11:16:28 +0530
+
+unicorn (5.4.1-2) unstable; urgency=medium
+
+  * Don't setup VERSION in d/rules (Closes: #918916)
+
+ -- Hleb Valoshka <375gnu@gmail.com>  Sun, 13 Jan 2019 12:46:16 +0300
+
+unicorn (5.4.1-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream version 5.4.1
+  * Bump Standards-Version to 4.3.0 (no changes needed)
+  * Move debian/watch to gemwatch.debian.net
+  * Bump debhelper compatibility level to 11
+  * Update debian/rules
+  * Update http -> https in control and copyright file
+
+ -- Utkarsh Gupta <guptautkarsh2102@gmail.com>  Fri, 04 Jan 2019 02:56:13 +0530
+
+unicorn (5.4.0-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream version 5.4.0.
+  * Run wrap-and-sort -a to clean up d/control.
+  * Update Vcs-* fields to salsa.debian.org.
+  * Remove lsb-base dependency, as a systemd.service file is shipped.
+
+ -- Chris Hofstaedtler <zeha@debian.org>  Tue, 06 Feb 2018 16:29:13 +0000
+
+unicorn (5.3.0-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+
+  [ Pirate Praveen ]
+  * Bump compat to 10 and drop dependency on dh-systemd
+
+ -- Sruthi Chandran <srud@disroot.org>  Tue, 19 Sep 2017 00:16:44 +0530
+
+unicorn (5.2.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * Remove 0001-explicitly-use-escaped-minus-in-man-pages.patch
+    (applied upstream)
+  * Fix gemspec file (remove olddoc usage)
+  * Add myself to uploaders
+
+ -- Pirate Praveen <praveen@debian.org>  Sun, 18 Sep 2016 09:52:09 +0530
+
+unicorn (5.0.1-2) unstable; urgency=medium
+
+  * Team upload
+  * Fix init script (Closes: #832119)
+
+ -- Pirate Praveen <praveen@debian.org>  Tue, 26 Jul 2016 11:37:40 +0530
+
+unicorn (5.0.1-1) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Rahulkrishnan R A ]
+  * New upstream version.
+
+  [ Pirate Praveen ]
+  * Tighten dependencies.
+
+ -- Pirate Praveen <praveen@debian.org>  Thu, 21 Jul 2016 12:24:46 +0530
+
+unicorn (4.9.0-2) unstable; urgency=medium
+
+  * Team upload.
+  * Re-upload to unstable.
+  * Check gemspec dependencies during build.
+
+ -- Pirate Praveen <praveen@debian.org>  Sun, 20 Dec 2015 12:25:33 +0530
+
+unicorn (4.9.0-1) experimental; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Bump standards version to 3.9.6 (no changes).
+
+ -- Pirate Praveen <praveen@debian.org>  Thu, 27 Aug 2015 19:47:38 +0530
+
+unicorn (4.8.3-1) unstable; urgency=medium
+
+  * New upstream version.
+  * Rebuild with newer version of gem2deb.
+  * Refresh patches.
+
+ -- Hleb Valoshka <375gnu@gmail.com>  Sat, 31 May 2014 17:44:05 +0300
+
+unicorn (4.8.2-1) unstable; urgency=medium
+
+  * New upstream version.
+  * Bump Standards-Version to 3.9.5 (no changes).
+  * Drop backported patch
+    0002-tests-fix-SO_REUSEPORT-tests-for-old-Linux-and-non-L.patch.
+
+ -- Hleb Valoshka <375gnu@gmail.com>  Tue, 15 Apr 2014 08:20:16 +0300
+
+unicorn (4.7.0-1) unstable; urgency=low
+
+  * New upstream version.
+  * Change debian/copyright to reflect upstream's license change.
+  * Update patches:
+    - Drop backported upstream commit 24b9f66d to improve handling of
+      client-triggerable socket errors.
+    - Backport upstream commit a1aa5c97 which fixes SO_REUSEPORT tests for old
+      Linux and non-Linux.
+
+ -- Hleb Valoshka <375gnu@gmail.com>  Thu, 07 Nov 2013 12:23:57 +0300
+
+unicorn (4.6.3-4) unstable; urgency=low
+
+  * Team upload.
+  * Also bump the dependencies on ruby-raindrops for ruby2.0 compatibility.
+
+ -- Jérémy Bobbio <lunar@debian.org>  Mon, 07 Oct 2013 14:13:25 +0200
+
+unicorn (4.6.3-3) unstable; urgency=low
+
+  * Team upload.
+  * Bump version for ruby-kgio in Depends and Build-Depends to get ruby2.0
+    support. (Closes: #720235)
+
+ -- Jérémy Bobbio <lunar@debian.org>  Mon, 07 Oct 2013 11:59:21 +0200
+
+unicorn (4.6.3-2) unstable; urgency=low
+
+  * Fix usage of $? in debian/ruby-tests.rb.
+  * Build only on linux and kfreebsd.
+  * Build against gem2deb >= 0.5.0~ to add ruby2.0 and drop ruby1.8 support.
+
+ -- Hleb Valoshka <375gnu@gmail.com>  Mon, 09 Sep 2013 20:58:02 +0300
+
+unicorn (4.6.3-1) unstable; urgency=low
+
+  * New upstream version.
+  * Update Vcs-* fields to use anonscm.debian.org.
+  * Backport upstream commit 24b9f66d to improve handling of
+    client-triggerable socket errors.
+
+ -- Hleb Valoshka <375gnu@gmail.com>  Sat, 17 Aug 2013 12:36:16 +0300
+
+unicorn (4.6.2-2) unstable; urgency=low
+
+  [ Hleb Valoshka ]
+  * Change the way tests are run during package build.
+  * Bump Standards-Version to 3.9.4.
+  * Remove DM-Upload-Allowed.
+
+  [ Jérémy Bobbio ]
+  * Upload to unstable.
+
+ -- Jérémy Bobbio <lunar@debian.org>  Tue, 07 May 2013 11:02:06 +0200
+
+unicorn (4.6.2-1) experimental; urgency=low
+
+  * New upstream version:
+    - Refresh and update 0001-explicitly-use-escaped-minus-in-man-pages.patch
+      for the new `--no-default-middleware` option.
+
+ -- Hleb Valoshka <375gnu@gmail.com>  Sat, 16 Mar 2013 14:38:56 +0100
+
+unicorn (4.3.1-4) unstable; urgency=low
+
+  * Remove unicorn logs on package purge.
+  * Add patch to explicitly use escaped minus in man pages.
+
+ -- Hleb Valoshka <375gnu@gmail.com>  Mon, 08 Oct 2012 00:15:04 +0300
+
+unicorn (4.3.1-3) unstable; urgency=low
+
+  * Team upload.
+  * Bump build dependency on gem2deb to >= 0.3.0~.
+
+ -- Paul van Tilburg <paulvt@debian.org>  Wed, 27 Jun 2012 21:06:17 +0200
+
+unicorn (4.3.1-2) unstable; urgency=low
+
+  * Add prerm hook which stops unicorn on remove and deconfigure
+  * Suppress output of 'invoke-rc.d unicorn status' in postinstall hook
+
+ -- Hleb Valoshka <375gnu@gmail.com>  Sun, 24 Jun 2012 10:43:08 +0300
+
+unicorn (4.3.1-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Hleb Valoshka <375gnu@gmail.com>  Sun, 13 May 2012 10:53:19 +0300
+
+unicorn (4.2.1-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Hleb Valoshka <375gnu@gmail.com>  Thu, 05 Apr 2012 21:11:41 +0300
+
+unicorn (4.2.0-2) unstable; urgency=low
+
+  * Install SysV init script
+  * Add postinstall hook
+
+ -- Hleb Valoshka <375gnu@gmail.com>  Sun, 04 Mar 2012 19:06:40 +0300
+
+unicorn (4.2.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #652093)
+
+ -- Hleb Valoshka <375gnu@gmail.com>  Sat, 18 Feb 2012 16:00:14 +0300

@@ -1,0 +1,11 @@
+/var/log/unicorn/*.log {
+  daily
+  missingok
+  rotate 7
+  compress
+  delaycompress
+
+  lastaction
+  invoke-rc.d unicorn reopen-logs
+  endscript
+}

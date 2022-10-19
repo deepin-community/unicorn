@@ -1,0 +1,133 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          unicorn
+# Required-Start:    $local_fs $remote_fs
+# Required-Stop:     $local_fs $remote_fs
+# Should-Start:      mysql postgresql
+# Should-Stop:       mysql postgresql
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: unicorn initscript
+# Description:       unicorn
+### END INIT INFO
+
+set -e
+
+NAME=unicorn
+DESC="Unicorn web server"
+
+. /lib/lsb/init-functions
+
+if [ -f /etc/default/unicorn ]; then
+  . /etc/default/unicorn
+fi
+
+DAEMON=/usr/bin/unicorn
+PID=${PID-/run/unicorn.pid}
+OLD_PID="${PID}.oldbin"
+TIMEOUT=${TIMEOUT-60}
+
+run_by_init() {
+  ([ "${previous-}" ] && [ "${runlevel-}" ]) || [ "${runlevel-}" = S ]
+}
+
+exit_with_message() {
+  if ! run_by_init; then
+    log_action_msg "$1 Not starting."
+  fi
+  exit 0
+}
+
+check_config_rb() {
+  if ! [ -s $CONFIG_RB ]; then
+    exit_with_message "Unicorn config.rb is missing (see /etc/default/unicorn)."
+  fi
+}
+
+sig() {
+  test -s $PID && kill -$1 `cat $PID`
+}
+
+oldsig() {
+  test -s $OLD_PID && kill -$1 `cat $OLD_PID`
+}
+
+set -u
+
+case "$1" in
+  start)
+        check_config_rb
+
+        log_daemon_msg "Starting $DESC" $NAME || true
+        if start-stop-daemon --start --quiet --oknodo --pidfile $PID --exec $DAEMON -- -D -c $CONFIG_RB $UNICORN_OPTS; then
+          log_end_msg 0 || true
+        else
+          log_end_msg 1 || true
+        fi
+        ;;
+  stop)
+        log_daemon_msg "Stopping $DESC" $NAME || true
+        if start-stop-daemon --stop --signal QUIT --quiet --oknodo --pidfile $PID; then
+          log_end_msg 0 || true
+        else
+          log_end_msg 1 || true
+        fi
+        ;;
+  force-stop)
+        log_daemon_msg "Forcing stop of $DESC" $NAME || true
+        if start-stop-daemon --stop --quiet --oknodo --pidfile $PID; then
+          log_end_msg 0 || true
+        else
+          log_end_msg 1 || true
+        fi
+        ;;
+  restart|force-reload)
+        log_daemon_msg "Restarting $DESC" $NAME || true
+        start-stop-daemon --stop --quiet --oknodo --pidfile $PID
+        sleep 1
+        if start-stop-daemon --start --quiet --oknodo --pidfile $PID --exec $DAEMON -- -D -c $CONFIG_RB $UNICORN_OPTS; then
+          log_end_msg 0 || true
+        else
+          log_end_msg 1 || true
+        fi
+        ;;
+  reload)
+        log_daemon_msg "Reloading $DESC" $NAME || true
+        if start-stop-daemon --stop --signal HUP --quiet --oknodo --pidfile $PID; then
+          log_end_msg 0 || true
+        else
+          log_end_msg 1 || true
+        fi
+        ;;
+  reopen-logs)
+        log_daemon_msg "Relopening log files of $DESC" $NAME || true
+        if start-stop-daemon --stop --signal USR1 --quiet --oknodo --pidfile $PID; then
+          log_end_msg 0 || true
+        else
+          log_end_msg 1 || true
+        fi
+        ;;
+  upgrade)
+        log_daemon_msg "Trying to upgrade running server" || true
+        if sig USR2 && sleep 2 && sig 0 && oldsig QUIT ; then
+          n=$TIMEOUT
+          while test -s $OLD_PID && test $n -ge 0 ; do
+            printf '.' && sleep 1 && n=`expr $n - 1`
+          done
+
+          if test $n -lt 0 && test -s $OLD_PID; then
+            log_daemon_msg "$OLD_PID still exists after $TIMEOUT seconds. Killing and starting new." || true
+            sig KILL || true
+            oldsig KILL || true
+            invoke-rc.d unicorn start || exit $?
+          fi
+        fi
+        ;;
+  status)
+        status_of_proc -p $PID $DAEMON $NAME && exit 0 || exit $?
+        ;;
+  *)
+        log_action_msg "Usage: $0 <start|stop|restart|force-reload|reload|force-stop|reopen-logs|status>" || true
+        exit 1
+        ;;
+esac

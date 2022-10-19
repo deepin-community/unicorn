@@ -1,0 +1,13 @@
+# Default timeout until child process is killed during server upgrade,
+# it has *no* relation to option "timeout" in server's config.rb.
+TIMEOUT=60
+
+# Server's config.rb, it's not a rack's config.ru
+CONFIG_RB="/path/to/your/web/application/unicorn.conf.rb"
+
+# Where to store PID, sh'ld be also set in server's config.rb, option "pid".
+# This parameter is used by init script but not by systemd service.
+PID=/run/unicorn.pid
+
+# Additional arguments passed to unicorn, see man (1) unicorn.
+UNICORN_OPTS="-E production"
